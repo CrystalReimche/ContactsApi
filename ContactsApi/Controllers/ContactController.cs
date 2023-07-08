@@ -24,8 +24,8 @@ namespace ContactsApi.Controllers
         }
 
         [HttpGet]
-        [Route("{id:guid}")]
-        public async Task<IActionResult> GetContact([FromRoute] Guid id)
+        [Route("{id}")]
+        public async Task<IActionResult> GetContact(int id)
         {
             var contact = await _dbContext.Contacts.FindAsync(id);
 
@@ -44,7 +44,6 @@ namespace ContactsApi.Controllers
         {
             var contact = new Contact()
             {
-                Id = Guid.NewGuid(),
                 Address = addContactDto.Address,
                 Email = addContactDto.Email,
                 FullName = addContactDto.FullName,
@@ -58,8 +57,8 @@ namespace ContactsApi.Controllers
         }
 
         [HttpPut]
-        [Route("{id:guid}")]
-        public async Task<IActionResult> UpdateContact([FromRoute] Guid id, ContactDto updateContactDto)
+        [Route("{id}")]
+        public async Task<IActionResult> UpdateContact(int id, ContactDto updateContactDto)
         {
             var contact = await _dbContext.Contacts.FindAsync(id);
 
@@ -81,8 +80,8 @@ namespace ContactsApi.Controllers
         }
 
         [HttpDelete]
-        [Route("{id:guid}")]
-        public async Task<IActionResult> DeleteContact([FromRoute] Guid id)
+        [Route("{id}")]
+        public async Task<IActionResult> DeleteContact(int id)
         {
             var contact = await _dbContext.Contacts.FindAsync(id);
 
